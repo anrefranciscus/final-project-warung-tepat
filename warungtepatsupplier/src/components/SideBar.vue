@@ -1,5 +1,4 @@
 <template>
-    <div class="relative flex min-h-screen">
         <div class="flex flex-col w-64 space-y-6 px-4 py-8 bg-cyan-600 border-r dark:bg-gray-900 dark:border-gray-700">
             <div class="flex items-center space-x-2 py-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -109,15 +108,20 @@
                 </a>
             </div>
         </div>
-        <div class="p-8">
-
-        </div>
-    </div>
+        <!-- <div class="p-8">
+            <router-view/>
+        </div> -->
 </template>
 
 <script>
 export default {
     name: 'SideBar',
+    props: ["routeName"],
+    computed: {
+        currentRouteName(){
+            return this.$route.name
+        }
+    }
 }
 </script>
 

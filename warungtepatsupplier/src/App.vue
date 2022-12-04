@@ -1,14 +1,24 @@
 <template>
-  <HomePage/>
+  <div class="relative flex min-h-screen">
+    <SideBar :route-name="currentRouteName" :class="currentRouteName !== 'login' ? '' : 'hidden' "/>
+      <router-view/>
+  </div>
+
 </template>
 
 <script>
-import HomePage from './views/HomePage.vue';
+import SideBar from './components/SideBar.vue';
 
 export default {
   name: 'App',
   components: {
-    HomePage
+    SideBar
+  },
+  props: ["routeName"],
+  computed: {
+    currentRouteName(){
+      return this.$route.name
+    }
   }
 }
 </script>
