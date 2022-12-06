@@ -1,7 +1,7 @@
 <template>
   <div class="relative flex min-h-screen">
     <SideBar :route-name="currentRouteName" :class="currentRouteName !== 'login' ? '' : 'hidden' "/>
-      <router-view/>
+    <router-view/>
   </div>
 
 </template>

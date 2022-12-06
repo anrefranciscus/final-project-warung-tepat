@@ -1,6 +1,8 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
+import HomePage from "../views/HomePage"
 import LoginPage from "../views/LoginPage"
+import AllProductSupplier from "../views/AllProductSupplier"
 
 Vue.use(VueRouter)
 
@@ -19,11 +21,14 @@ const routes = [
     {
         path: '/',
         name: 'home',
+        component: HomePage,
         meta: { requireAuth: true }
     },
     {
         path: '/all-product',
         name: 'allproduct',
+        component: AllProductSupplier,
+        meta: { requireAuth: true }
     },
     {
         path: '/product/:id',

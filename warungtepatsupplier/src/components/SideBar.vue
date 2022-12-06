@@ -50,15 +50,14 @@
                         <span class="mx-4 font-medium">Profile</span>
                     </a>
 
-                    <a class="flex items-center px-4 py-2 mt-5 text-white transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
-                        href="#">
+                    <router-link to="/all-product" :class=" routeName == 'allproduct' ? 'flex items-center px-4 py-2 mt-5 text-white transition-colors duration-300 transform bg-cyan-700 rounded my-2 hover:text-cyan-300' : 'flex items-center px-4 py-2 mt-5 text-white transition-colors duration-300 transform rounded my-2 hover:text-cyan-300' ">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                         </svg>
                         <span class="mx-4 font-medium">Product</span>
-                    </a>
+                    </router-link>
 
                     <a class="flex items-center px-4 py-2 mt-5 text-white transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                         href="#">
@@ -100,17 +99,14 @@
                     </a>
                 </nav>
 
-                <a href="#" class="flex items-center px-4 -mx-2">
+                <!-- <a href="#" class="flex items-center px-4 -mx-2">
                     <img class="object-cover mx-2 rounded-full h-9 w-9"
                         src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
                         alt="avatar" />
                     <span class="mx-2 font-medium text-gray-800 dark:text-gray-200">John Doe</span>
-                </a>
+                </a> -->
             </div>
         </div>
-        <!-- <div class="p-8">
-            <router-view/>
-        </div> -->
 </template>
 
 <script>
