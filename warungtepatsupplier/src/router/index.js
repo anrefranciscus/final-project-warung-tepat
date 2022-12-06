@@ -3,6 +3,8 @@ import VueRouter from "vue-router"
 import HomePage from "../views/HomePage"
 import LoginPage from "../views/LoginPage"
 import AllProductSupplier from "../views/AllProductSupplier"
+import DetailProductSupplier from "../views/DetailProductSupplier"
+import AddNewProductSupplier from "../views/AddNewProductSupplier"
 
 Vue.use(VueRouter)
 
@@ -31,13 +33,15 @@ const routes = [
         meta: { requireAuth: true }
     },
     {
-        path: '/product/:id',
+        path: '/product/detail',
         name: "detailproduct",
+        component: DetailProductSupplier,
         meta: { requireAuth: true }
     },
     {
         path: '/add-product',
         name: 'addproduct',
+        component: AddNewProductSupplier,
         meta: { requireAuth: true }
     },
     {

@@ -36,7 +36,20 @@ const store = new Vuex.Store({
             status: "",
             idSupplier: localStorage.getItem("id"),
         },
-        allProductSupplier: []
+        formUpdateProductSupplier: {
+            idProduk: "",
+            namaProduk: "",
+            harga: "",
+            deskripsi: "",
+            gambar: "",
+            stok: "",
+            status: "",
+            idSupplier: localStorage.getItem("id"),
+            kategori: ""
+        },
+        allProductSupplier: [],
+        allTransactionSupplier: [],
+        detailProductSupplier: {}
     },
     mutations: {
         SET_USER_LOGIN(state, payload){
@@ -44,7 +57,7 @@ const store = new Vuex.Store({
                 state.userAuth.isLogin = true
                 state.userAuth.token = payload.token
                 state.userAuth.id = payload.id
-            }else if(state.payload.isLogin){
+            }else if(state.userAuth.isLogin){
                 state.userAuth.isLogin = false
                 state.userAuth.token = payload.token
                 state.userAuth.id = payload.id
@@ -56,6 +69,15 @@ const store = new Vuex.Store({
         },
         SET_FORM_ADD_NEW_PRODUCT(state, payload){
             state.formAddNewProductSupplier = payload
+        },
+        SET_FORM_UPDATE_PRODUCT_SUPPLIER(state, payload){
+            state.formUpdateProductSupplier = payload
+        },
+        SET_DETAIL_PRODUCT_SUPPLIER(state, payload){
+            state.detailProductSupplier = payload
+        },
+        ADD_NEW_PRODUCT_SUPPLIER(state, payload){
+            state.allProductSupplier.push(payload)
         }
     },
     actions: {
@@ -74,14 +96,38 @@ const store = new Vuex.Store({
                 }
             })
         },
+        logOutSupplier({commit}){
+            localStorage.removeItem("token")
+            localStorage.removeItem("id")
+            commit("SET_USER_LOGIN", {
+                token: "",
+                id: ""
+            })
+            router.push("/login")
+        },
         getAllProductSupplier({commit}){
             axios.get(`${baseUrlAPI}/produk`, {
               headers: {
                 Authorization: `Bearer ${token}`
               }  
             })
-            .then(({data}) => {
-                commit("SET_ALL_PRODUCT_SUPPLIER", data)
+            .then(({data, status}) => {
+                if(status === 200){
+                    commit("SET_ALL_PRODUCT_SUPPLIER", data) 
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        },
+        getDetailProductSupplier({commit}, idProduk){
+            axios.get(`${baseUrlAPI}/produk/${idProduk}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then(({data}) =>{
+                commit("SET_DETAIL_PRODUCT_SUPPLIER", data)
             })
             .catch(err => {
                 console.log(err)
@@ -94,6 +140,9 @@ const store = new Vuex.Store({
         },
         getAllProductData(state){
             return state.allProductSupplier
+        },
+        getDetailProductData(state){
+            return state.detailProductSupplier
         }
     },
     plugins: [vuexLocal.plugin]
