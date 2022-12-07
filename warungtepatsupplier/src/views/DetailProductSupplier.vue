@@ -4,7 +4,8 @@
             <div class="flex flex-row justify-between mb-10">
                 <h1 class="font-semibold text-xl">Detail Product</h1>
                 <router-link to="/product/update">
-                    <button @click="getDataProduct" class="p-2 rounded-md font-normal text-base text-white bg-[#FF8000] hover:bg-[#D06800]">
+                    <button @click="getDataProduct"
+                        class="p-2 rounded-md font-normal text-base text-white bg-cyan-700 hover:bg-cyan-800">
                         <font-awesome-icon icon="fa-solid fa-wrench" class="mr-1" />
                         Update Product
                     </button>
@@ -14,35 +15,38 @@
                 <div class="mb-2 ">
                     <span>Nama Produk</span>
                     <h1 class="font-semibold text-lg">
-                        {{getDetailProductData.namaProduk}}
+                        {{ getDetailProductData.namaProduk }}
                     </h1>
                 </div>
                 <div class="mb-2 ">
                     <span>Deskripsi Produk</span>
                     <h1 class="font-semibold text-lg">
-                        {{getDetailProductData.deskripsi}}
+                        {{ getDetailProductData.deskripsi }}
                     </h1>
                 </div>
                 <div class="mb-2 ">
                     <span>Gambar Produk</span>
-                    <img :src="getDetailProductData.gambar" alt="image product"/>
+                    <img :src="getDetailProductData.gambar" alt="image product" />
                 </div>
                 <div class="mb-2 ">
                     <span>Harga Produk</span>
                     <h1 class="font-semibold text-lg">
-                        {{getDetailProductData.harga}}
-                    </h1>
+                        {{new Intl.NumberFormat("id", {
+                            style: "currency",
+                            currency: "IDR"
+                        }).format(getDetailProductData.harga)
+                    }}</h1>
                 </div>
                 <div class="mb-2 ">
                     <span>Stok Produk</span>
                     <h1 class="font-semibold text-lg">
-                        {{getDetailProductData.stok}}
+                        {{ getDetailProductData.stok }}
                     </h1>
                 </div>
                 <div class="mb-2 ">
                     <span>Status</span>
                     <h1 class="font-semibold text-lg">
-                        {{(getDetailProductData.status === true ? "Dijual" : "Tidak Dijual")}}
+                        {{ (getDetailProductData.status === true ? "Dijual" : "Tidak Dijual") }}
                     </h1>
                 </div>
             </div>
@@ -58,8 +62,8 @@ export default {
     computed: {
         ...mapGetters(["getDetailProductData"])
     },
-    methods:{
-        getDataProduct(){
+    methods: {
+        getDataProduct() {
             this.$store.commit("SET_FORM_UPDATE_PRODUCT_SUPPLIER", {
                 idProduk: this.getDetailProductData.id,
                 namaProduk: this.getDetailProductData.namaProduk,
@@ -78,4 +82,5 @@ export default {
 
 
 <style scoped>
+
 </style>

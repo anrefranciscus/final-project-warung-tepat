@@ -21,7 +21,7 @@ const store = new Vuex.Store({
         userAuth: {
             isLogin: false,
             token: "",
-            id: 0
+            idSupplier: ""
         },
         formLoginSupplier: {
             nomorHandphone: "",
@@ -49,20 +49,24 @@ const store = new Vuex.Store({
         },
         allProductSupplier: [],
         allTransactionSupplier: [],
-        detailProductSupplier: {}
+        detailProductSupplier: {},
+        detailSupplier: {}
     },
     mutations: {
         SET_USER_LOGIN(state, payload){
             if(!state.userAuth.isLogin){
                 state.userAuth.isLogin = true
                 state.userAuth.token = payload.token
-                state.userAuth.id = payload.id
+                state.userAuth.idSupplier = payload.idSupplier
             }else if(state.userAuth.isLogin){
                 state.userAuth.isLogin = false
                 state.userAuth.token = payload.token
-                state.userAuth.id = payload.id
+                state.userAuth.idSupplier = payload.idSupplier
                 state.allProductSupplier = payload.allProductSupplier
             }
+        },
+        SET_DETAIL_SUPPLIER(state, payload){
+            state.detailSupplier = payload
         },
         SET_ALL_PRODUCT_SUPPLIER(state, payload){
             state.allProductSupplier = payload
@@ -87,10 +91,10 @@ const store = new Vuex.Store({
                 if (status === 200 ){
                     commit("SET_USER_LOGIN", {
                         token: data.payload.token,
-                        id: data.payload.id
+                        idSupplier: data.payload.id
                     })
                     localStorage.setItem("token", data.payload.token)
-                    localStorage.setItem("id", data.payload.id)
+                    localStorage.setItem("idSupplier", data.payload.id)
                     console.log("data")
                     router.push("/")
                 }
@@ -98,10 +102,10 @@ const store = new Vuex.Store({
         },
         logOutSupplier({commit}){
             localStorage.removeItem("token")
-            localStorage.removeItem("id")
+            localStorage.removeItem("idSupplier")
             commit("SET_USER_LOGIN", {
                 token: "",
-                id: ""
+                idSupplier: ""
             })
             router.push("/login")
         },
@@ -132,6 +136,22 @@ const store = new Vuex.Store({
             .catch(err => {
                 console.log(err)
             })
+        },
+        getDetailSupplier({commit}){
+            axios.get(`${baseUrlAPI}/supplier/${localStorage.getItem("idSupplier")}`,{
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then(({data}) => {
+                commit("SET_DETAIL_SUPPLIER", data)
+                console.log(data)
+                console.log(token)
+                console.log(localStorage.getItem("idSupplier"))
+            })
+            .catch(err => {
+                console.log(err)
+            })
         }
     },
     getters: {
@@ -143,6 +163,9 @@ const store = new Vuex.Store({
         },
         getDetailProductData(state){
             return state.detailProductSupplier
+        },
+        getDetailSupplierData(state){
+            return state.detailSupplier
         }
     },
     plugins: [vuexLocal.plugin]

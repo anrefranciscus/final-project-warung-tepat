@@ -5,6 +5,7 @@ import LoginPage from "../views/LoginPage"
 import AllProductSupplier from "../views/AllProductSupplier"
 import DetailProductSupplier from "../views/DetailProductSupplier"
 import AddNewProductSupplier from "../views/AddNewProductSupplier"
+import DetailSupplier from "../views/DetailSupplier"
 
 Vue.use(VueRouter)
 
@@ -18,36 +19,42 @@ const routes = [
         path: '/login',
         name: 'login',
         component: LoginPage,
-        meta: { requireAuth: true }
+        meta: { requiresAuth: true }
     },
     {
         path: '/',
         name: 'home',
         component: HomePage,
-        meta: { requireAuth: true }
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/supplier/detail',
+        name: 'profilesupplier',
+        component: DetailSupplier,
+        meta: {requiresAuth: true}
     },
     {
         path: '/all-product',
         name: 'allproduct',
         component: AllProductSupplier,
-        meta: { requireAuth: true }
+        meta: { requiresAuth: true }
     },
     {
         path: '/product/detail',
         name: "detailproduct",
         component: DetailProductSupplier,
-        meta: { requireAuth: true }
+        meta: { requiresAuth: true }
     },
     {
         path: '/add-product',
         name: 'addproduct',
         component: AddNewProductSupplier,
-        meta: { requireAuth: true }
+        meta: { requiresAuth: true }
     },
     {
         path: '/all-transaction',
         name: 'alltransaction',
-        meta: { requireAuth: true }
+        meta: { requiresAuth: true }
     }
 ]
 

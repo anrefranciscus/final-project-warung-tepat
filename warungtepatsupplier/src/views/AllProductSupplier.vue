@@ -3,7 +3,7 @@
         <div class="flex flex-row justify-between px-2 py-4 my-5">
             <h3 class="text-2xl font-extrabold font-serif">List All Product</h3>
             <router-link to="/add-product">
-                <button class="p-2 rounded-md font-normal text-base text-white bg-cyan-700 hover:bg-cyan-400">
+                <button class="p-2 rounded-md font-normal text-base text-white bg-cyan-700 hover:bg-cyan-800">
                     Add New Product
                 </button>
             </router-link>
