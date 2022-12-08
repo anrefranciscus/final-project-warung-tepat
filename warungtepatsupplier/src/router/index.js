@@ -5,6 +5,7 @@ import LoginPage from "../views/LoginPage"
 import AllProductSupplier from "../views/AllProductSupplier"
 import DetailProductSupplier from "../views/DetailProductSupplier"
 import AddNewProductSupplier from "../views/AddNewProductSupplier"
+import UpdateProductSupplier from "../views/UpdateProductSupplier"
 import DetailSupplier from "../views/DetailSupplier"
 
 Vue.use(VueRouter)
@@ -31,7 +32,7 @@ const routes = [
         path: '/supplier/detail',
         name: 'profilesupplier',
         component: DetailSupplier,
-        meta: {requiresAuth: true}
+        meta: { requiresAuth: true }
     },
     {
         path: '/all-product',
@@ -49,6 +50,12 @@ const routes = [
         path: '/add-product',
         name: 'addproduct',
         component: AddNewProductSupplier,
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/update-product',
+        name: 'updateproduct',
+        component: UpdateProductSupplier,
         meta: { requiresAuth: true }
     },
     {

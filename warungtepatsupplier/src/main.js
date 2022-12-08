@@ -3,7 +3,10 @@ import App from './App.vue'
 import './assets/tailwind.css'
 import router from './router'
 import store from './store'
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
 
+
+Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 router.beforeEach(async (to, from, next) => {
     await store.restored;

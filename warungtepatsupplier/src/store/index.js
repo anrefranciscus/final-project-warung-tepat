@@ -34,7 +34,7 @@ const store = new Vuex.Store({
             gambar: "",
             stok: "",
             status: "",
-            idSupplier: localStorage.getItem("id"),
+            idSupplier: "",
         },
         formUpdateProductSupplier: {
             idProduk: "",
@@ -135,6 +135,27 @@ const store = new Vuex.Store({
             })
             .catch(err => {
                 console.log(err)
+            })
+        },
+        updateProductSupplier({commit, state}){
+            axios.put(`${baseUrlAPI}/produk`, state.formUpdateProductSupplier)
+            .then(({status}) =>{
+                console.log(status)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+            commit("SET_FORM_UPDATE_PRODUCT_SUPPLIER", {
+                idProduk: "",
+                namaProduk: "",
+                harga: "",
+                deskripsi: "",
+                gambar: "",
+                stok: "",
+                status: "",
+                idSupplier: "",
+                kategori: ""
             })
         },
         getDetailSupplier({commit}){

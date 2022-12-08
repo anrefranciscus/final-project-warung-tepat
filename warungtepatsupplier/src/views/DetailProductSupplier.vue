@@ -3,7 +3,7 @@
         <div class="flex flex-col mt-4">
             <div class="flex flex-row justify-between mb-10">
                 <h1 class="font-semibold text-xl">Detail Product</h1>
-                <router-link to="/product/update">
+                <router-link to="/update-product">
                     <button @click="getDataProduct"
                         class="p-2 rounded-md font-normal text-base text-white bg-cyan-700 hover:bg-cyan-800">
                         <font-awesome-icon icon="fa-solid fa-wrench" class="mr-1" />

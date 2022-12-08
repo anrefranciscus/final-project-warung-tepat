@@ -8,7 +8,7 @@
                 </button>
             </router-link>
         </div>
-        <div @click="goToDetailProductSupplier(product.idProduk)" v-for="product in getAllProductData" :key="product.idProduct">
+        <div class="w-full border-b border-gray-200"  @click="goToDetailProductSupplier(product.idProduk)" v-for="product in getAllProductData" :key="product.idProduct">
             <ListProduct :product="product"/>
         </div>
     </div>

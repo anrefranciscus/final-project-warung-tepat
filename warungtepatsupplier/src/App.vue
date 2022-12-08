@@ -1,9 +1,12 @@
 <template>
-  <div class="relative flex min-h-screen">
-    <SideBar :route-name="currentRouteName" :class="currentRouteName !== 'login' ? '' : 'hidden' "/>
-    <router-view/>
-  </div>
+  <div :class="currentRouteName !== 'login' ? 'flex flex-row w-full' : '' ">
+    <SideBar :route-name="currentRouteName"/>
 
+    <div :class="currentRouteName !== 'login' ? 'ml-[220px] h-full w-full z-10' : '' ">
+      <router-view/>
+    </div>
+  </div>
+ 
 </template>
 
 <script>

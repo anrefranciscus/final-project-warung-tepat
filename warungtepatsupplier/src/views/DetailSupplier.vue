@@ -35,7 +35,7 @@
                         {{new Intl.NumberFormat("id", {
                             style: "currency",
                             currency: "IDR"
-                        }).format(getDetailSupplierData.harga === 0.0 ? "Saldo Kosong" : "")
+                        }).format(getDetailSupplierData.harga === 0.0 ? "" : "")
                     }}</h1>
                 </div>
             </div>

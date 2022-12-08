@@ -1,8 +1,8 @@
 <template>
-    <div class="bg-white dark:bg-gray-900">
+    <div class="bg-white dark:bg-gray-900 flex justify-center">
         <div class="container flex items-center justify-center min-h-screen px-6 mx-auto">
             <form class="w-full max-w-md" @submit.prevent="loginSupplier">
-                <h1 class="text-3xl font-semibold text-gray-800 capitalize dark:text-white">sign In</h1>
+                <h1 class="text-3xl font-semibold text-gray-800 capitalize dark:text-white">Login</h1>
 
                 <div class="relative flex items-center mt-8">
                     <span class="absolute">
