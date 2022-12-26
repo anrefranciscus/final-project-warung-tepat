@@ -1,7 +1,7 @@
 <template>
     <div class="bg-white dark:bg-gray-900 flex justify-center">
         <div class="container flex items-center justify-center min-h-screen px-6 mx-auto">
-            <form class="w-full max-w-md" @submit.prevent="loginSupplier">
+            <form class="w-full max-w-md" @submit.prevent="handleLogin">
                 <h1 class="text-3xl font-semibold text-gray-800 capitalize dark:text-white">Login</h1>
 
                 <div class="relative flex items-center mt-8">
@@ -15,7 +15,7 @@
                     <input type="text"
                         class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         placeholder="Phone number" 
-                        v-model="formLoginSupplier.nomorHandphone">
+                        v-model="user.nomorHandphone">
                 </div>
 
                 <div class="relative flex items-center mt-4">
@@ -30,7 +30,7 @@
                     <input type="password"
                         class="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         placeholder="Password"
-                        v-model="formLoginSupplier.password">
+                        v-model="user.password">
                 </div>
 
                 <div class="mt-6">
@@ -51,25 +51,68 @@
 </template>
 
 <script>
+import User from '@/models/user';
+
 export default {
     name: "LoginPage",
+    // data(){
+    //     return {
+    //         formLoginSupplier: {
+    //             nomorHandphone: "",
+    //             password: ""
+    //         }
+    //     }
+    // },
+    // methods: {
+    //     loginSupplier(){
+    //         this.$store.dispatch("loginSupplier", {
+    //             nomorHandphone: this.formLoginSupplier.nomorHandphone,
+    //             password: this.formLoginSupplier.password
+    //         })
+    //         console.log(this.formLoginSupplier)
+    //     }
+    // },
     data(){
         return {
-            formLoginSupplier: {
-                nomorHandphone: "",
-                password: ""
-            }
+            user: new User('', ''),
+            loading: false,
+            message: ''
+        }
+    },
+    computed: {
+        loggedIn(){
+            return this.$store.state.auth.status.loggedIn
+        }
+    },
+    created(){
+        if(this.loggedIn){
+            this.$router.push("/")
         }
     },
     methods: {
-        loginSupplier(){
-            this.$store.dispatch("loginSupplier", {
-                nomorHandphone: this.formLoginSupplier.nomorHandphone,
-                password: this.formLoginSupplier.password
+        handleLogin(){
+            this.loading = true
+            this.$validator.validateAll().then(isValid => {
+                if(!isValid){
+                    this.loading = false
+                    return
+                }
+                if (this.user.nomorHandphone && this.user.password){
+                    this.$store.dispatch('auth/login', this.user).then(
+                        () => {
+                            this.$router.push("/")
+                        },
+                        error => {
+                            this.loading = false;
+                            this.message =
+                            (error.response && error.response.data && error.response.data.message)
+                            error.message || error.toString();
+                        }
+                    )
+                }
             })
-            console.log(this.formLoginSupplier)
         }
-    },
+    }
 }
 </script>
 

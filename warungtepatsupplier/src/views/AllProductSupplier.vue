@@ -8,9 +8,24 @@
                 </button>
             </router-link>
         </div>
-        <div class="w-full border-b border-gray-200"  @click="goToDetailProductSupplier(product.idProduk)" v-for="product in getAllProductData" :key="product.idProduct">
-            <ListProduct :product="product"/>
-        </div>
+        <table class="w-full border-b border-gray-200">
+            <thead>
+                <tr class="text-sm font-medium text-gray-700 border-b border-gray-200">
+                    <td class="py-4 px-4 text-start">
+                        Gambar Produk
+                    </td>
+                    <td class="py-4 px-4 text-left">
+                        Nama Produk
+                    </td>
+                    <td class="py-4 px-4 text-center">Harga</td>
+                    <td class="py-4 px-4 text-center">Stok</td>
+                    <td class="py-4 px-4 text-center">Dibuat</td>
+                </tr>
+            </thead>
+            <tbody @click="goToDetailProductSupplier(product.idProduk)" v-for="product in getAllProductData" :key="product.idProduct">
+                <ListProduct :product="product"/>
+            </tbody>
+        </table>
     </div>
 </template>
 

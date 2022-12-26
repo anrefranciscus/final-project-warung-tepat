@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="pl-5 pr-14 w-full">
         <div class="flex flex-col mt-4">
             <div class="flex flex-row justify-between mb-10">
@@ -56,4 +56,4 @@ export default {
 
 
 <style scoped>
-</style>
+</style> -->

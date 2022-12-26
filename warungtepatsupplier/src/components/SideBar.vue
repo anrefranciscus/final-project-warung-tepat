@@ -2,7 +2,7 @@
     <div :class=" routeName !== 'login' ? 'bg-cyan-700 border-r border-[#D1D1D1] fixed w-56 h-full' : 'hidden' ">
         <div class="px-5 my-5">
             <h1 class="font-semibold text-2xl">Warung Tepat</h1>
-            <h1 class="text-base">Halo, {{getDetailSupplierData.email}}</h1>
+            <h1 class="text-base">Halo, {{}}</h1>
             <h1 class="text-white text-sm">HALO</h1>
         </div>
         <div class="mt-8 pl-2">
@@ -18,7 +18,7 @@
                     </div>                    
                 </div>
             </router-link>
-            <div @click="goToDetailSupplier">
+            <div >
                 <div :class="routeName == 'profilesupplier' ? 'mb-2 border-l-4 border-cyan-500 rounded-l w-full bg-cyan-800 hover:rounded' : 'mb-2 w-full hover:bg-cyan-800 hover:rounded' ">
                     <div class="text-gray-200 px-3 py-2 text-[15px] font-bold">
                         <div class="inline w-full mr-2">
@@ -77,12 +77,12 @@ import {
     faCartShopping,
     faMoneyBill
 } from "@fortawesome/free-solid-svg-icons"
-import { mapGetters } from "vuex"
+//import { mapGetters } from "vuex"
 export default {
     name: 'SideBar',
     props: ["routeName"],
     computed: {
-        ...mapGetters(['getDetailSupplierData']),
+        // ...mapGetters(['getDetailSupplierData']),
         currentRouteName() {
             return this.$route.name
         },
@@ -104,7 +104,8 @@ export default {
     },
     methods: {
         logoutSupplier(){
-            this.$store.dispatch("logOutSupplier")
+            this.$store.dispatch("auth/logout")
+            this.$router.push("/login")
         },
         goToDetailSupplier(){
             this.$router.push("/supplier/detail")

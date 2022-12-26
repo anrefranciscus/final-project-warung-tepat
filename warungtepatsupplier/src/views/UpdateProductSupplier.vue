@@ -25,7 +25,7 @@ export default {
     name: "UpdateProductSupplier",
     computed: {
         formUpdateProductSupplier(){
-            return this.$store.state.formUpdateProductSupplier
+            return this.$store.state.product.formUpdateProductSupplier
         }
     },
     methods: {
